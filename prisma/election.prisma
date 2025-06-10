@@ -27,6 +27,7 @@ model Election {
   note String?
 
   Votes Vote[]
+  Positions Position[]
 
   @@index([isActive])
 }

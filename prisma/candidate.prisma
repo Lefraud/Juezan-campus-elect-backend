@@ -1,8 +1,10 @@
+candidate.prisma
 model Position{
     id String @id @default(uuid())
     title String
     Candidate Candidate []
     Vote Vote[]
+    Election Election @relation(fields: [electionId], references: [id], electionid String)
 }
 
 model Candidate {
@@ -11,6 +13,5 @@ model Candidate {
     Position Position @relation(fields: [positionId], references: [id])
     positionId String
     
-    Student Student @relation(fields: [studentId], references: [studentId])
-    studentId String
+    Election Election @relation(fields: [electionId], references: [id], electionid String)
 }

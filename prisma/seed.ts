@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
+const PRESIDENT25_ID = "election-2025-president";
 
 async function seedElection() {
     const election25 = await prisma.election.upsert({
@@ -15,11 +16,25 @@ async function seedElection() {
             isActive: true
         }
     });
+
+    await prisma.position.upsert({
+        where: { id: PRESIDENT25_ID },
+        update: {},
+        create: {
+            id: PRESIDENT25_ID,
+            title: "President",
+            election: {
+                connect: {
+                    id: election25.id
+                }
+            }
+        }
+    });
 }
 
 async function main() {
     console.log("SEEDING DATABASE...");
-    
+
     await seedElection();
 
     console.log("Finished SEEDING");
