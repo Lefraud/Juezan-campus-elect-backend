@@ -1,13 +1,13 @@
 model Vote {
   id String @id @default(cuid())
 
-  Voter Student @relation(references: [studentId], fields: [voterId])
+  Voter Student @relation(fields: [voterId], references: [studentId])
   voterId String
 
-  Position Position @relation(references: [id], fields: [positionId])
+  Position Position @relation(fields: [positionId], references: [id])
   positionId String
 
-  Election Election @relation(references: [id], fields: [electionId])
+  Election Election @relation(fields: [electionId], references: [id])
   electionId String
 
   createdAt DateTime @default(now())

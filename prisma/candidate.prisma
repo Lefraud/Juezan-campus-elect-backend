@@ -2,6 +2,7 @@ model Position{
     id String @id @default(uuid())
     title String
     Candidate Candidate []
+    Vote Vote[]
 }
 
 model Candidate {
