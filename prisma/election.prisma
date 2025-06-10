@@ -24,6 +24,7 @@ model Election {
   endDate DateTime
   isActive Boolean @default(true)
   createdAt DateTime @default(now())
+  note String?
 
   Votes Vote[]
 
